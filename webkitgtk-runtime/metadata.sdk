@@ -1,0 +1,4 @@
+[Runtime]
+name=org.webkitgtk.Sdk
+runtime=org.webkitgtk.Platform/x86_64/0.1
+sdk=org.webkitgtk.Sdk/x86_64/0.1

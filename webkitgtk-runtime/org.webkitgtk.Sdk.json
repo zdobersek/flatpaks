@@ -1,0 +1,157 @@
+{
+    "build-runtime": true,
+    "id": "org.webkitgtk.Sdk",
+    "id-platform": "org.webkitgtk.Sdk",
+    "branch": "0.1",
+    "runtime": "org.gnome.Platform",
+    "sdk": "org.gnome.Sdk",
+    "runtime-version": "3.16",
+    "writable-sdk": true,
+    "sdk-extensions": [],
+    "metadata": "metadata.sdk",
+    "metadata-platform": "metadata.platform",
+    "cleanup": [ "/cache", "/man", "*.la", "*.a" ],
+    "cleanup-commands": [ ],
+    "cleanup-platform": [ ],
+    "build-options": {
+        "cflags": "-O2 -g",
+        "cxxflags": "-O2 -g"
+    },
+    "modules": [
+        {
+            "name": "ruby",
+            "sources": [
+                {
+                    "type": "archive",
+                    "url": "http://cache.ruby-lang.org/pub/ruby/1.9/ruby-1.9.2-p330.tar.gz",
+                    "sha256": "23ef45fdaecc5d6c7b4e9e2d51b23817fc6aa8225a20f123f7fa98760e8b5ca9"
+                }
+            ]
+        },
+        {
+            "name": "libxml2",
+            "config-opts": [ "--with-python=no" ],
+            "sources": [
+                {
+                    "type": "archive",
+                    "url": "http://xmlsoft.org/sources/libxml2-2.9.1.tar.gz",
+                    "sha256": "fd3c64cb66f2c4ea27e934d275904d92cec494a8e8405613780cbc8a71680fdb"
+                }
+            ]
+        },
+        {
+            "name": "libxslt",
+            "sources": [
+                {
+                    "type": "archive",
+                    "url": "http://xmlsoft.org/sources/libxslt-1.1.29.tar.gz",
+                    "sha256": "b5976e3857837e7617b29f2249ebb5eeac34e249208d31f1fbf7a6ba7a4090ce"
+                }
+            ]
+        },
+        {
+            "name": "libglib2",
+            "config-opts": ["--disable-gtk-doc", "--disable-dtrace" ],
+            "cleanup-platform": [ "/share/glib-2.0/codegen",
+                                  "/bin/gdbus-codegen",
+                                  "/bin/glib-*",
+                                  "/bin/gobject-query",
+                                  "/bin/gresource",
+                                  "/bin/gtester*"
+                                ],
+            "sources": [
+                {
+                    "type": "archive",
+                    "url": "https://download.gnome.org/sources/glib/2.44/glib-2.44.1.tar.xz",
+                    "sha256": "8811deacaf8a503d0a9b701777ea079ca6a4277be10e3d730d2112735d5eca07"
+                }
+            ]
+        },
+        {
+            "name": "freetype-bootstrap",
+            "config-opts": [ "--disable-static", "--with-zlib=yes", "--with-bzip2=yes", "--with-png=yes", "--with-harfbuzz=no" ],
+            "cleanup-platform": [ "/bin/freetype-config" ],
+            "sources": [
+                {
+                    "type": "archive",
+                    "url": "http://download.savannah.gnu.org/releases/freetype/freetype-2.4.11.tar.bz2",
+                    "sha256": "ef9d0bcb64647d9e5125dc7534d7ca371c98310fec87677c410f397f71ffbe3f"
+                }
+            ]
+        },
+        {
+            "name": "fontconfig",
+            "config-opts": [ "--disable-static"],
+            "post-install": [ "install -m 0644 -p -T fontconfig-flatpak.conf /etc/fonts/conf.d/50-flatpak.conf"],
+            "sources": [
+                {
+                    "type": "archive",
+                    "url": "http://fontconfig.org/release/fontconfig-2.11.1.tar.bz2",
+                    "sha256": "dc62447533bca844463a3c3fd4083b57c90f18a70506e7a9f4936b5a1e516a99"
+                },
+                {
+                    "type": "file",
+                    "path": "fontconfig-flatpak.conf"
+                }
+            ]
+        },
+        {
+            "name": "pixman",
+            "config-opts": ["--disable-static", "--disable-gtk"],
+            "sources": [
+                {
+                    "type": "archive",
+                    "url": "http://xorg.freedesktop.org/archive/individual/lib/pixman-0.32.6.tar.bz2",
+                    "sha256": "201fc0d7d6bc0017496f2bd27b3ca14224aea0df6b624c5ee2dc0307a4ff14a4"
+                }
+            ]
+        },
+        {
+            "name": "cairo",
+            "config-opts": ["--disable-static",
+                            "--enable-gobject",
+                            "--enable-ft",
+                            "--disable-script",
+                            "--disable-ps",
+                            "--disable-pdf",
+                            "--disable-svg",
+                            "--disable-gtk-doc"
+                           ],
+            "cleanup-platform": ["/bin"],
+            "sources": [
+                {
+                    "type": "archive",
+                    "url": "http://cairographics.org/releases/cairo-1.14.6.tar.xz",
+                    "sha256": "613cb38447b76a93ff7235e17acd55a78b52ea84a9df128c3f2257f8eaa7b252"
+                }
+            ]
+        },
+        {
+            "name": "harfbuzz",
+            "config-opts": ["--disable-static",
+                            "--disable-gtk-doc",
+                            "--with-gobject",
+                            "--with-graphite2"
+                           ],
+            "sources": [
+                {
+                    "type": "archive",
+                    "url": "http://www.freedesktop.org/software/harfbuzz/release/harfbuzz-1.3.3.tar.bz2",
+                    "sha256": "2620987115a4122b47321610dccbcc18f7f121115fd7b88dc8a695c8b66cb3c9"
+                }
+            ]
+        },
+        {
+            "name": "freetype",
+            "config-opts": [ "--disable-static", "--with-zlib=yes", "--with-bzip2=yes", "--with-png=yes", "--with-harfbuzz=yes" ],
+            "cleanup-platform": [ "/bin/freetype-config" ],
+            "sources": [
+                {
+                    "type": "archive",
+                    "url": "http://download.savannah.gnu.org/releases/freetype/freetype-2.4.11.tar.bz2",
+                    "sha256": "ef9d0bcb64647d9e5125dc7534d7ca371c98310fec87677c410f397f71ffbe3f"
+                }
+            ]
+        }
+    ]
+}
