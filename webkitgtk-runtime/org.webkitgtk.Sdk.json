@@ -152,6 +152,28 @@
                     "sha256": "ef9d0bcb64647d9e5125dc7534d7ca371c98310fec87677c410f397f71ffbe3f"
                 }
             ]
+        },
+        {
+            "name": "geoclue2",
+            "config-opts": [ "--disable-gtk-doc", "--disable-3g-source", "--disable-cdma-source", "--disable-modem-gps-source", "--disable-nmea-source" ],
+            "sources": [
+                {
+                    "type": "archive",
+                    "url": "https://www.freedesktop.org/software/geoclue/releases/2.4/geoclue-2.4.4.tar.xz",
+                    "sha256": "9c43fb9d0c12067ea64400500abb0640194947d4c2c55e38545afe5d9c5c315c"
+                }
+            ]
+        },
+        {
+            "name": "hyphen",
+            "config-opts": ["--disable-static"],
+            "sources": [
+                {
+                    "type": "archive",
+                    "url": "http://downloads.sourceforge.net/hunspell/hyphen-2.8.8.tar.gz",
+                    "sha256": "304636d4eccd81a14b6914d07b84c79ebb815288c76fe027b9ebff6ff24d5705"
+                }
+            ]
         }
     ]
 }
