@@ -166,7 +166,7 @@
         },
         {
             "name": "hyphen",
-            "config-opts": ["--disable-static"],
+            "config-opts": [ "--disable-static" ],
             "sources": [
                 {
                     "type": "archive",
