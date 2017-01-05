@@ -1,0 +1,11 @@
+[Application]
+name=org.wpe.WPENightly
+runtime=org.wpe.Platform/x86_64/0.1
+sdk=org.wpe.Sdk/x86_64/0.1
+command=/app/bin/WPELauncher
+
+[Context]
+shared=ipc;network;
+sockets=wayland;pulseaudio;
+devices=dri;
+filesystems=host;
