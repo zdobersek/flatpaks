@@ -111,9 +111,9 @@
             "config-opts": ["--disable-static",
                             "--enable-gobject",
                             "--enable-ft",
+                            "--enable-ps",
+                            "--enable-pdf",
                             "--disable-script",
-                            "--disable-ps",
-                            "--disable-pdf",
                             "--disable-svg",
                             "--disable-gtk-doc"
                            ],
