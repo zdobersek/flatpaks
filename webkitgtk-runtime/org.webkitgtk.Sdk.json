@@ -174,6 +174,17 @@
                     "sha256": "304636d4eccd81a14b6914d07b84c79ebb815288c76fe027b9ebff6ff24d5705"
                 }
             ]
+        },
+        {
+            "name": "pango",
+            "config-opts": [ "--enable-cairo" ],
+            "sources": [
+                {
+                    "type": "archive",
+                    "url": "http://ftp.gnome.org/pub/GNOME/sources/pango/1.36/pango-1.36.8.tar.xz",
+                    "sha256": "18dbb51b8ae12bae0ab7a958e7cf3317c9acfc8a1e1103ec2f147164a0fc2d07"
+                }
+            ]
         }
     ]
 }
