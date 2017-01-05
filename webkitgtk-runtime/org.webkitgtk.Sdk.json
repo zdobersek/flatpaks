@@ -185,6 +185,17 @@
                     "sha256": "18dbb51b8ae12bae0ab7a958e7cf3317c9acfc8a1e1103ec2f147164a0fc2d07"
                 }
             ]
+        },
+        {
+            "name": "wayland",
+            "config-opts": [ "--disable-documentation" ],
+            "sources": [
+                {
+                    "type": "archive",
+                    "url": "http://wayland.freedesktop.org/releases/wayland-1.8.1.tar.xz",
+                    "sha256": "f17c938d1c24fd0a10f650a623a2775d329db3168b5732e498b08388ec776fc8"
+                }
+            ]
         }
     ]
 }
