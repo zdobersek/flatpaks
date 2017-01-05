@@ -1,0 +1,11 @@
+[Application]
+name=org.webkitgtk.WebKitGTKNightly
+runtime=org.webkitgtk.Platform/x86_64/0.1
+sdk=org.webkitgtk.Sdk/x86_64/0.1
+command=/app/libexec/webkit2gtk-4.0/MiniBrowser
+
+[Context]
+shared=network;ipc;
+sockets=x11;wayland;pulseaudio;
+devices=dri;
+filesystems=host;
