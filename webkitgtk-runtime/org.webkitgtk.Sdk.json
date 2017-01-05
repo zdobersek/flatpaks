@@ -86,8 +86,8 @@
             "sources": [
                 {
                     "type": "archive",
-                    "url": "http://fontconfig.org/release/fontconfig-2.11.1.tar.bz2",
-                    "sha256": "dc62447533bca844463a3c3fd4083b57c90f18a70506e7a9f4936b5a1e516a99"
+                    "url": "http://fontconfig.org/release/fontconfig-2.12.1.tar.bz2",
+                    "sha256": "b449a3e10c47e1d1c7a6ec6e2016cca73d3bd68fbbd4f0ae5cc6b573f7d6c7f3"
                 },
                 {
                     "type": "file",
