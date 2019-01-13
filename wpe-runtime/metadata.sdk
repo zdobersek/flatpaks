@@ -1,4 +1,0 @@
-[Runtime]
-name=org.wpe.Sdk
-runtime=org.wpe.Platform/x86_64/0.1
-sdk=org.wpe.Sdk/x86_64/0.1
