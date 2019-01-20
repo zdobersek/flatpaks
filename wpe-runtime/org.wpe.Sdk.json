@@ -137,6 +137,14 @@
                     "type": "archive",
                     "url": "https://wpewebkit.org/releases/wpewebkit-2.22.3.tar.xz",
                     "sha256": "241f177cded1a4ba3088716650eaaac25588878882170789b3c630ac45dbb2fa"
+                },
+                {
+                    "type": "patch",
+                    "path": "wpe-webkit/0001-Add-the-WebKitVersion.h-header-https-bugs.webkit.org.patch"
+                },
+                {
+                    "type": "patch",
+                    "path": "wpe-webkit/0002-WPE-Add-the-WebKitVersion.h-header.patch"
                 }
             ],
             "config-opts": [

@@ -1,0 +1,32 @@
+From d2eb0e7218f489c08d3f3497bbbf041330408877 Mon Sep 17 00:00:00 2001
+From: "philn@webkit.org"
+ <philn@webkit.org@268f45cc-cd09-0410-ab3c-d52691b4dbfc>
+Date: Sat, 3 Nov 2018 14:29:44 +0000
+Subject: [PATCH 2/2] [WPE] Add the WebKitVersion.h header
+ https://bugs.webkit.org/show_bug.cgi?id=191015 <rdar://problem/45647211>
+
+Reviewed by Michael Catanzaro.
+
+* PlatformWPE.cmake: Install the generated header as well.
+
+git-svn-id: http://svn.webkit.org/repository/webkit/trunk@237772 268f45cc-cd09-0410-ab3c-d52691b4dbfc
+---
+ Source/WebKit/ChangeLog         | 10 ++++++++++
+ Source/WebKit/PlatformWPE.cmake |  1 +
+ 2 files changed, 11 insertions(+)
+
+diff --git a/Source/WebKit/PlatformWPE.cmake b/Source/WebKit/PlatformWPE.cmake
+index 5d27ae46b8f..70fda3c0741 100644
+--- a/Source/WebKit/PlatformWPE.cmake
++++ b/Source/WebKit/PlatformWPE.cmake
+@@ -97,6 +97,7 @@ list(APPEND WebKit_DERIVED_SOURCES
+ 
+ set(WPE_API_INSTALLED_HEADERS
+     ${DERIVED_SOURCES_WPE_API_DIR}/WebKitEnumTypes.h
++    ${DERIVED_SOURCES_WPE_API_DIR}/WebKitVersion.h
+     ${WEBKIT_DIR}/UIProcess/API/wpe/WebKitApplicationInfo.h
+     ${WEBKIT_DIR}/UIProcess/API/wpe/WebKitAuthenticationRequest.h
+     ${WEBKIT_DIR}/UIProcess/API/wpe/WebKitAutomationSession.h
+-- 
+2.20.1
+
