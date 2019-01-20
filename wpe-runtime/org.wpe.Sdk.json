@@ -21,19 +21,6 @@
     "cleanup-platform-commands": [ "/usr/libexec/freedesktop-post.sh" ],
     "modules": [
         {
-            "name": "p11-kit",
-            "sources": [
-                {
-                    "type": "archive",
-                    "url": "https://github.com/p11-glue/p11-kit/releases/download/0.23.12/p11-kit-0.23.12.tar.gz",
-                    "sha256": "58bae22f19db1de1a1103e7ca4149eed6e303e727878c2cd5ea9e6fe445fd403"
-                }
-            ],
-            "config-opts": [
-                "--with-trust-paths=/etc/ssl/certs/ca-certificates.crt"
-            ]
-        },
-        {
             "name": "gstreamer",
             "buildsystem": "meson",
             "sources": [
