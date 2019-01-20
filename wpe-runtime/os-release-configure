@@ -1,0 +1,17 @@
+#!/bin/sh
+
+cat <<EOF > Makefile
+all:
+
+install:
+	mkdir -p ${DESTDIR}/usr/lib
+	install os-release ${DESTDIR}/usr/lib
+	mkdir -p ${DESTDIR}/usr/share/appdata
+	mkdir -p ${DESTDIR}/etc
+	install issue ${DESTDIR}/etc
+	install issue.net ${DESTDIR}/etc
+	install org.wpe.Platform.appdata.xml ${DESTDIR}/usr/share/appdata
+	install org.wpe.Sdk.appdata.xml ${DESTDIR}/usr/share/appdata
+	appstream-compose --basename=org.wpe.Platform --prefix=/usr --origin=flatpak org.wpe.Platform
+	appstream-compose --basename=org.wpe.Sdk --prefix=/usr --origin=flatpak org.wpe.Sdk
+EOF
