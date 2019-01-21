@@ -21,19 +21,6 @@
     "cleanup-platform-commands": [ "/usr/libexec/freedesktop-post.sh" ],
     "modules": [
         {
-            "name": "p11-kit",
-            "sources": [
-                {
-                    "type": "archive",
-                    "url": "https://github.com/p11-glue/p11-kit/releases/download/0.23.12/p11-kit-0.23.12.tar.gz",
-                    "sha256": "58bae22f19db1de1a1103e7ca4149eed6e303e727878c2cd5ea9e6fe445fd403"
-                }
-            ],
-            "config-opts": [
-                "--with-trust-paths=/etc/ssl/certs/ca-certificates.crt"
-            ]
-        },
-        {
             "name": "gstreamer",
             "buildsystem": "meson",
             "sources": [
@@ -150,13 +137,21 @@
                     "type": "archive",
                     "url": "https://wpewebkit.org/releases/wpewebkit-2.22.3.tar.xz",
                     "sha256": "241f177cded1a4ba3088716650eaaac25588878882170789b3c630ac45dbb2fa"
+                },
+                {
+                    "type": "patch",
+                    "path": "wpe-webkit/0001-Add-the-WebKitVersion.h-header-https-bugs.webkit.org.patch"
+                },
+                {
+                    "type": "patch",
+                    "path": "wpe-webkit/0002-WPE-Add-the-WebKitVersion.h-header.patch"
                 }
             ],
             "config-opts": [
                 "-DPORT=WPE",
                 "-DCMAKE_BUILD_TYPE=Release",
-                "-DCMAKE_C_FLAGS_RELEASE=-O2 -DNDEBUG",
-                "-DCMAKE_CXX_FLAGS_RELEASE=-O2 -DNDEBUG",
+                "-DCMAKE_C_FLAGS_RELEASE=-DNDEBUG",
+                "-DCMAKE_CXX_FLAGS_RELEASE=-DNDEBUG",
                 "-DCMAKE_INSTALL_PREFIX=/usr"
             ]
         },
@@ -173,6 +168,36 @@
             "config-opts": [
                 "-Dgtk_doc=disabled",
                 "-Dintrospection=disabled"
+            ]
+        },
+        {
+            "name": "os-release",
+            "sources": [
+                {
+                    "type": "file",
+                    "path": "os-release"
+                },
+                {
+                    "type": "file",
+                    "path": "issue"
+                },
+                {
+                    "type": "file",
+                    "path": "issue.net"
+                },
+                {
+                    "type": "file",
+                    "path": "org.wpe.Sdk.appdata.xml"
+                },
+                {
+                    "type": "file",
+                    "path": "org.wpe.Platform.appdata.xml"
+                },
+                {
+                    "type": "file",
+                    "path": "os-release-configure",
+                    "dest-filename": "configure"
+                }
             ]
         }
     ]
