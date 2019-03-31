@@ -162,11 +162,16 @@
                     "type": "git",
                     "url": "https://gitlab.freedesktop.org/gstreamer/gst-plugins-bad.git",
                     "branch": "master"
+                },
+                {
+                    "type": "patch",
+                    "path": "gstwpe/0001-wpesrc-Switch-to-WPEBackend-fdo-1.2.0.patch"
                 }
             ],
             "config-opts": [
                 "-Dgtk_doc=disabled",
-                "-Dintrospection=disabled"
+                "-Dintrospection=disabled",
+                "-Daom=disabled"
             ]
         },
         {

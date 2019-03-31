@@ -1,0 +1,27 @@
+From 2b218da805f92509494398031ef546a7cea28f76 Mon Sep 17 00:00:00 2001
+From: Philippe Normand <philn@igalia.com>
+Date: Sat, 30 Mar 2019 14:02:50 +0000
+Subject: [PATCH] wpesrc: Switch to WPEBackend-fdo 1.2.0
+
+---
+ ext/wpe/WPEThreadedView.cpp | 4 ++--
+ 1 file changed, 2 insertions(+), 2 deletions(-)
+
+diff --git a/ext/wpe/WPEThreadedView.cpp b/ext/wpe/WPEThreadedView.cpp
+index 6b3b4ed94..f7e621efc 100644
+--- a/ext/wpe/WPEThreadedView.cpp
++++ b/ext/wpe/WPEThreadedView.cpp
+@@ -167,8 +167,8 @@ void WPEThreadedView::initialize(GstWpeSrc* src, GstGLContext* context, GstGLDis
+     static std::once_flag s_loaderFlag;
+     std::call_once(s_loaderFlag,
+         [] {
+-#if defined(WPE_BACKEND_CHECK_VERSION) && WPE_BACKEND_CHECK_VERSION(0, 2, 0)
+-            wpe_loader_init("libWPEBackend-fdo-0.1.so");
++#if defined(WPE_BACKEND_CHECK_VERSION) && WPE_BACKEND_CHECK_VERSION(1, 2, 0)
++            wpe_loader_init("libWPEBackend-fdo-1.0.so");
+ #endif
+         });
+ 
+-- 
+2.20.1
+
