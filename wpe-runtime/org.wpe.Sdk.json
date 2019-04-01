@@ -32,7 +32,8 @@
             ],
             "config-opts": [
                 "-Dgtk_doc=disabled",
-                "-Dintrospection=disabled"
+                "-Dintrospection=disabled",
+                "-Dnls=disabled"
             ]
         },
         {
@@ -47,7 +48,8 @@
             ],
             "config-opts": [
                 "-Dgtk_doc=disabled",
-                "-Dintrospection=disabled"
+                "-Dintrospection=disabled",
+                "-Dnls=disabled"
             ]
         },
         {
@@ -59,6 +61,10 @@
                     "url": "https://gitlab.freedesktop.org/gstreamer/gst-plugins-good.git",
                     "branch": "master"
                 }
+            ],
+            "config-opts": [
+                "-Dnls=disabled"
+
             ]
         },
         {
@@ -73,8 +79,8 @@
             "sources": [
                 {
                     "type": "archive",
-                    "url": "https://wpewebkit.org/releases/libwpe-1.1.0.tar.xz",
-                    "sha256": "72e34ad754be11abd1a438cfe195d8d644c52105ab2b1c3b39dec6228bc776ce"
+                    "url": "https://wpewebkit.org/releases/libwpe-1.2.0.tar.xz",
+                    "sha256": "f28035e7a8991fbb1a0e762f1b3d0e3cb57513a3164c75c7dc3eb0c11d9149fc"
                 }
             ]
         },
@@ -90,8 +96,8 @@
             "sources": [
                 {
                     "type": "archive",
-                    "url": "https://wpewebkit.org/releases/wpebackend-fdo-1.1.0.tar.xz",
-                    "sha256": "f6c72130d16e50860cb83eb0f6e109c76f1826d2c6bee39025fb3651941761e7"
+                    "url": "https://wpewebkit.org/releases/wpebackend-fdo-1.2.0.tar.xz",
+                    "sha256": "b1bb261273772af8f7d96d94989fc2ed0445ec06c7eb21f47a1b94e52422ddd5"
                 }
             ]
         },
@@ -135,16 +141,8 @@
             "sources": [
                 {
                     "type": "archive",
-                    "url": "https://wpewebkit.org/releases/wpewebkit-2.22.3.tar.xz",
-                    "sha256": "241f177cded1a4ba3088716650eaaac25588878882170789b3c630ac45dbb2fa"
-                },
-                {
-                    "type": "patch",
-                    "path": "wpe-webkit/0001-Add-the-WebKitVersion.h-header-https-bugs.webkit.org.patch"
-                },
-                {
-                    "type": "patch",
-                    "path": "wpe-webkit/0002-WPE-Add-the-WebKitVersion.h-header.patch"
+                    "url": "https://wpewebkit.org/releases/wpewebkit-2.24.0.tar.xz",
+                    "sha256": "d2e5e444134720cbad5c8669996000a004943bb71ee6783aefa72a80bde1b35a"
                 }
             ],
             "config-opts": [
@@ -152,7 +150,8 @@
                 "-DCMAKE_BUILD_TYPE=Release",
                 "-DCMAKE_C_FLAGS_RELEASE=-DNDEBUG",
                 "-DCMAKE_CXX_FLAGS_RELEASE=-DNDEBUG",
-                "-DCMAKE_INSTALL_PREFIX=/usr"
+                "-DCMAKE_INSTALL_PREFIX=/usr",
+                "-DUSE_OPENJPEG=OFF"
             ]
         },
         {
@@ -163,11 +162,16 @@
                     "type": "git",
                     "url": "https://gitlab.freedesktop.org/gstreamer/gst-plugins-bad.git",
                     "branch": "master"
+                },
+                {
+                    "type": "patch",
+                    "path": "gstwpe/0001-wpesrc-Switch-to-WPEBackend-fdo-1.2.0.patch"
                 }
             ],
             "config-opts": [
                 "-Dgtk_doc=disabled",
-                "-Dintrospection=disabled"
+                "-Dintrospection=disabled",
+                "-Daom=disabled"
             ]
         },
         {
