@@ -141,8 +141,12 @@
             "sources": [
                 {
                     "type": "archive",
-                    "url": "https://wpewebkit.org/releases/wpewebkit-2.24.0.tar.xz",
-                    "sha256": "d2e5e444134720cbad5c8669996000a004943bb71ee6783aefa72a80bde1b35a"
+                    "url": "https://wpewebkit.org/releases/wpewebkit-2.24.2.tar.xz",
+                    "sha256": "cf251a467b3bcae50f97e22f4baccca49fcbbd54162dc5b71c0b1ebf655fd95f"
+                },
+                {
+                    "type": "patch",
+                    "path": "wpe/0001-Add-enable-media-web-setting.patch"
                 }
             ],
             "config-opts": [
