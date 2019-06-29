@@ -25,9 +25,9 @@
             "buildsystem": "meson",
             "sources": [
                 {
-                    "type": "git",
-                    "url": "https://gitlab.freedesktop.org/gstreamer/gstreamer.git",
-                    "branch": "master"
+                    "type": "archive",
+                    "url": "https://gstreamer.freedesktop.org/src/gstreamer/gstreamer-1.16.0.tar.xz",
+                    "sha256": "0e8e2f7118be437cba879353970cf83c2acced825ecb9275ba05d9186ef07c00"
                 }
             ],
             "config-opts": [
@@ -41,9 +41,9 @@
             "buildsystem": "meson",
             "sources": [
                 {
-                    "type": "git",
-                    "url": "https://gitlab.freedesktop.org/gstreamer/gst-plugins-base.git",
-                    "branch": "master"
+                    "type": "archive",
+                    "url": "https://gstreamer.freedesktop.org/src/gst-plugins-base/gst-plugins-base-1.16.0.tar.xz",
+                    "sha256": "4093aa7b51e28fb24dfd603893fead8d1b7782f088b05ed0f22a21ef176fb5ae"
                 }
             ],
             "config-opts": [
@@ -57,9 +57,9 @@
             "buildsystem": "meson",
             "sources": [
                 {
-                    "type": "git",
-                    "url": "https://gitlab.freedesktop.org/gstreamer/gst-plugins-good.git",
-                    "branch": "master"
+                    "type": "archive",
+                    "url": "https://gstreamer.freedesktop.org/src/gst-plugins-good/gst-plugins-good-1.16.0.tar.xz",
+                    "sha256": "654adef33380d604112f702c2927574cfc285e31307b79e584113858838bb0fd"
                 }
             ],
             "config-opts": [
@@ -163,9 +163,9 @@
             "buildsystem": "meson",
             "sources": [
                 {
-                    "type": "git",
-                    "url": "https://gitlab.freedesktop.org/gstreamer/gst-plugins-bad.git",
-                    "branch": "master"
+                    "type": "archive",
+                    "url": "https://gstreamer.freedesktop.org/src/gst-plugins-bad/gst-plugins-bad-1.16.0.tar.xz",
+                    "sha256": "22139de35626ada6090bdfa3423b27b7fc15a0198331d25c95e6b12cb1072b05"
                 }
             ],
             "config-opts": [
