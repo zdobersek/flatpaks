@@ -79,8 +79,8 @@
             "sources": [
                 {
                     "type": "archive",
-                    "url": "https://wpewebkit.org/releases/libwpe-1.2.0.tar.xz",
-                    "sha256": "f28035e7a8991fbb1a0e762f1b3d0e3cb57513a3164c75c7dc3eb0c11d9149fc"
+                    "url": "https://wpewebkit.org/releases/libwpe-1.4.0.tar.xz",
+                    "sha256": "e2d3494fc33fe946ad917fd6a3abd127462b91bba62ef8b35507e92f8ede4188"
                 }
             ]
         },
@@ -96,8 +96,8 @@
             "sources": [
                 {
                     "type": "archive",
-                    "url": "https://wpewebkit.org/releases/wpebackend-fdo-1.2.0.tar.xz",
-                    "sha256": "b1bb261273772af8f7d96d94989fc2ed0445ec06c7eb21f47a1b94e52422ddd5"
+                    "url": "https://wpewebkit.org/releases/wpebackend-fdo-1.4.0.tar.xz",
+                    "sha256": "a919ca4a5bc445f9419a5b7f3781cfc98e5abcf5d7259eb1869f5ab20fd18baf"
                 }
             ]
         },
@@ -141,12 +141,8 @@
             "sources": [
                 {
                     "type": "archive",
-                    "url": "https://wpewebkit.org/releases/wpewebkit-2.24.2.tar.xz",
-                    "sha256": "cf251a467b3bcae50f97e22f4baccca49fcbbd54162dc5b71c0b1ebf655fd95f"
-                },
-                {
-                    "type": "patch",
-                    "path": "wpe/0001-Add-enable-media-web-setting.patch"
+                    "url": "https://wpewebkit.org/releases/wpewebkit-2.26.1.tar.xz",
+                    "sha256": "d1ae85dffb5bfc106c5ac6d5e73a3dfe3cb2c1df1f18c16103e1dc744cd4ac14"
                 }
             ],
             "config-opts": [
