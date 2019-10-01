@@ -26,8 +26,8 @@
             "sources": [
                 {
                     "type": "archive",
-                    "url": "https://gstreamer.freedesktop.org/src/gstreamer/gstreamer-1.16.0.tar.xz",
-                    "sha256": "0e8e2f7118be437cba879353970cf83c2acced825ecb9275ba05d9186ef07c00"
+                    "url": "https://gstreamer.freedesktop.org/src/gstreamer/gstreamer-1.16.1.tar.xz",
+                    "sha256": "02211c3447c4daa55919c5c0f43a82a6fbb51740d57fc3af0639d46f1cf4377d"
                 }
             ],
             "config-opts": [
@@ -42,8 +42,8 @@
             "sources": [
                 {
                     "type": "archive",
-                    "url": "https://gstreamer.freedesktop.org/src/gst-plugins-base/gst-plugins-base-1.16.0.tar.xz",
-                    "sha256": "4093aa7b51e28fb24dfd603893fead8d1b7782f088b05ed0f22a21ef176fb5ae"
+                    "url": "https://gstreamer.freedesktop.org/src/gst-plugins-base/gst-plugins-base-1.16.1.tar.xz",
+                    "sha256": "5c3cc489933d0597087c9bc6ba251c93693d64554bcc563539a084fa2d5fcb2b"
                 }
             ],
             "config-opts": [
@@ -58,8 +58,8 @@
             "sources": [
                 {
                     "type": "archive",
-                    "url": "https://gstreamer.freedesktop.org/src/gst-plugins-good/gst-plugins-good-1.16.0.tar.xz",
-                    "sha256": "654adef33380d604112f702c2927574cfc285e31307b79e584113858838bb0fd"
+                    "url": "https://gstreamer.freedesktop.org/src/gst-plugins-good/gst-plugins-good-1.16.1.tar.xz",
+                    "sha256": "9fbabe69018fcec707df0b71150168776040cde6c1a26bb5a82a136755fa8f1f"
                 }
             ],
             "config-opts": [
@@ -79,8 +79,8 @@
             "sources": [
                 {
                     "type": "archive",
-                    "url": "https://wpewebkit.org/releases/libwpe-1.2.0.tar.xz",
-                    "sha256": "f28035e7a8991fbb1a0e762f1b3d0e3cb57513a3164c75c7dc3eb0c11d9149fc"
+                    "url": "https://wpewebkit.org/releases/libwpe-1.4.0.tar.xz",
+                    "sha256": "e2d3494fc33fe946ad917fd6a3abd127462b91bba62ef8b35507e92f8ede4188"
                 }
             ]
         },
@@ -96,8 +96,8 @@
             "sources": [
                 {
                     "type": "archive",
-                    "url": "https://wpewebkit.org/releases/wpebackend-fdo-1.2.0.tar.xz",
-                    "sha256": "b1bb261273772af8f7d96d94989fc2ed0445ec06c7eb21f47a1b94e52422ddd5"
+                    "url": "https://wpewebkit.org/releases/wpebackend-fdo-1.4.0.tar.xz",
+                    "sha256": "a919ca4a5bc445f9419a5b7f3781cfc98e5abcf5d7259eb1869f5ab20fd18baf"
                 }
             ]
         },
@@ -141,12 +141,8 @@
             "sources": [
                 {
                     "type": "archive",
-                    "url": "https://wpewebkit.org/releases/wpewebkit-2.24.2.tar.xz",
-                    "sha256": "cf251a467b3bcae50f97e22f4baccca49fcbbd54162dc5b71c0b1ebf655fd95f"
-                },
-                {
-                    "type": "patch",
-                    "path": "wpe/0001-Add-enable-media-web-setting.patch"
+                    "url": "https://wpewebkit.org/releases/wpewebkit-2.26.1.tar.xz",
+                    "sha256": "d1ae85dffb5bfc106c5ac6d5e73a3dfe3cb2c1df1f18c16103e1dc744cd4ac14"
                 }
             ],
             "config-opts": [
@@ -164,8 +160,8 @@
             "sources": [
                 {
                     "type": "archive",
-                    "url": "https://gstreamer.freedesktop.org/src/gst-plugins-bad/gst-plugins-bad-1.16.0.tar.xz",
-                    "sha256": "22139de35626ada6090bdfa3423b27b7fc15a0198331d25c95e6b12cb1072b05"
+                    "url": "https://gstreamer.freedesktop.org/src/gst-plugins-bad/gst-plugins-bad-1.16.1.tar.xz",
+                    "sha256": "56481c95339b8985af13bac19b18bc8da7118c2a7d9440ed70e7dcd799c2adb5"
                 }
             ],
             "config-opts": [
