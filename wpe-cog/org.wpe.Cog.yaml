@@ -16,9 +16,6 @@ finish-args:
 - --socket=session-bus
 - --filesystem=home
 - --talk-name=ca.desrt.dconf
-- --filesystem=xdg-run/dconf
-- --filesystem=~/.config/dconf:ro
-- --env=DCONF_USER_CONFIG_DIR=.config/dconf
 modules:
 - name: cog
   buildsystem: cmake-ninja
