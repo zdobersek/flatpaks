@@ -5,8 +5,9 @@
     "branch": "0.1",
     "runtime": "org.freedesktop.Platform",
     "sdk": "org.freedesktop.Sdk",
-    "runtime-version": "18.08",
+    "runtime-version": "19.08",
     "sdk-extensions": [ "org.freedesktop.Sdk.Locale", "org.freedesktop.Sdk.Docs" ],
+    "inherit-extensions": [ "org.freedesktop.Platform.GL" ],
     "cleanup": [ "/cache",
                  "/man",
                  "*.la", "*.a" ],
@@ -64,7 +65,6 @@
             ],
             "config-opts": [
                 "-Dnls=disabled"
-
             ]
         },
         {
@@ -166,8 +166,7 @@
             ],
             "config-opts": [
                 "-Dgtk_doc=disabled",
-                "-Dintrospection=disabled",
-                "-Daom=disabled"
+                "-Dintrospection=disabled"
             ]
         },
         {
