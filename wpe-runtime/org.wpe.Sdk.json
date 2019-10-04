@@ -6,19 +6,14 @@
     "runtime": "org.freedesktop.Platform",
     "sdk": "org.freedesktop.Sdk",
     "runtime-version": "19.08",
-    "sdk-extensions": [ "org.freedesktop.Sdk.Locale", "org.freedesktop.Sdk.Docs" ],
+    "build-runtime": true,
+    "sdk-extensions": [ "org.freedesktop.Sdk.Locale", "org.freedesktop.Sdk.Docs",
+                        "org.freedesktop.Sdk.Extension.rust-stable" ],
     "inherit-extensions": [ "org.freedesktop.Platform.GL" ],
-    "cleanup": [ "/cache",
-                 "/man",
-                 "*.la", "*.a" ],
+    "inherit-sdk-extensions": [
+        "org.freedesktop.Sdk.Extension"
+    ],
     "cleanup-commands": [ "/usr/libexec/freedesktop-post.sh" ],
-    "cleanup-platform": [ "/share/runtime/docs",
-                          "/include",
-                          "/share/aclocal",
-                          "/share/pkgconfig",
-                          "/lib/pkgconfig",
-                          "*.a"
-                        ],
     "cleanup-platform-commands": [ "/usr/libexec/freedesktop-post.sh" ],
     "modules": [
         {
