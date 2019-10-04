@@ -1,0 +1,83 @@
+From 5105bc804154144d94bc91a8a912bf1a491270ae Mon Sep 17 00:00:00 2001
+From: Philippe Normand <philn@igalia.com>
+Date: Wed, 5 Jun 2019 12:47:16 +0100
+Subject: [PATCH] wpe: Fix build with -Werror enabled
+
+Including gl.h from WPEThreadedView.h leads to GST_LEVEL_DEFAULT detected as
+redefined. The proposed fix is to include config.h from the CPP implementation
+file and disable gl.h inclusion in the header, by using forward declarations.
+---
+ ext/wpe/WPEThreadedView.cpp | 10 +++++++++-
+ ext/wpe/WPEThreadedView.h   |  7 +++----
+ ext/wpe/gstwpesrc.cpp       |  2 +-
+ 3 files changed, 13 insertions(+), 6 deletions(-)
+
+diff --git a/ext/wpe/WPEThreadedView.cpp b/ext/wpe/WPEThreadedView.cpp
+index f7e621efc..af7fc7aa7 100644
+--- a/ext/wpe/WPEThreadedView.cpp
++++ b/ext/wpe/WPEThreadedView.cpp
+@@ -17,12 +17,20 @@
+  * Boston, MA 02110-1301, USA.
+  */
+ 
++#ifdef HAVE_CONFIG_H
++#include <config.h>
++#endif
++
+ #include "WPEThreadedView.h"
+ 
++#include <gst/gl/gl.h>
++#include <gst/gl/egl/gsteglimage.h>
++#include <gst/gl/egl/gstgldisplay_egl.h>
++
+ #include <cstdio>
+ #include <mutex>
+ 
+-#define GST_CAT_DEFAULT wpe_src_debug
++GST_DEBUG_CATEGORY_EXTERN (wpe_src_debug);
+ 
+ // -70 is the GLib priority we use internally in WebKit, for WPE.
+ #define WPE_GLIB_SOURCE_PRIORITY -70
+diff --git a/ext/wpe/WPEThreadedView.h b/ext/wpe/WPEThreadedView.h
+index e61237563..5b2c38943 100644
+--- a/ext/wpe/WPEThreadedView.h
++++ b/ext/wpe/WPEThreadedView.h
+@@ -21,16 +21,15 @@
+ 
+ #include <EGL/egl.h>
+ #include <glib.h>
+-#include <gst/gl/gl.h>
+ #include <gst/gl/gstglfuncs.h>
+-#include <gst/gl/egl/gsteglimage.h>
+-#include <gst/gl/egl/gstgldisplay_egl.h>
+ #include <wpe/fdo.h>
+ #include <wpe/fdo-egl.h>
+ #include <wpe/webkit.h>
+ #include "gstwpesrc.h"
+ 
+-GST_DEBUG_CATEGORY_EXTERN(wpe_src_debug);
++typedef struct _GstGLContext GstGLContext;
++typedef struct _GstGLDisplay GstGLDisplay;
++typedef struct _GstEGLImage GstEGLImage;
+ 
+ class WPEThreadedView {
+ public:
+diff --git a/ext/wpe/gstwpesrc.cpp b/ext/wpe/gstwpesrc.cpp
+index ed1e56631..8eb635cdf 100644
+--- a/ext/wpe/gstwpesrc.cpp
++++ b/ext/wpe/gstwpesrc.cpp
+@@ -60,10 +60,10 @@
+ #endif
+ 
+ #include "gstwpesrc.h"
+-#include <gst/video/video.h>
+ #include <gst/gl/gl.h>
+ #include <gst/gl/egl/gstglmemoryegl.h>
+ #include <gst/gl/wayland/gstgldisplay_wayland.h>
++#include <gst/video/video.h>
+ #include <xkbcommon/xkbcommon.h>
+ 
+ #include "WPEThreadedView.h"
+-- 
+2.23.0
+
