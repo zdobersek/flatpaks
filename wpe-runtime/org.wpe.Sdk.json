@@ -166,6 +166,21 @@
             ]
         },
         {
+            "name": "rtmpdump",
+            "buildsystem": "simple",
+            /* FIXME: Make libdir truly generic, hardcoding the triplet here is bad... */
+            "build-commands": [
+                "make prefix=/usr libdir=/usr/lib/x86_64-linux-gnu CRYPTO=GNUTLS install"
+            ],
+            "sources": [
+                {
+                    "type": "git",
+                    "url": "https://git.ffmpeg.org/rtmpdump.git",
+                    "branch": "c5f04a58fc2aeea6296ca7c44ee4734c18401aa3"
+                }
+            ]
+        },
+        {
             "name": "gst-plugins-bad",
             "buildsystem": "meson",
             "sources": [
