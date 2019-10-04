@@ -17,6 +17,94 @@
     "cleanup-platform-commands": [ "/usr/libexec/freedesktop-post.sh" ],
     "modules": [
         {
+            "name": "libdrm",
+            "sources": [
+                {
+                    "type": "archive",
+                    "url": "https://dri.freedesktop.org/libdrm/libdrm-2.4.99.tar.bz2",
+                    "sha256": "4dbf539c7ed25dbb2055090b77ab87508fc46be39a9379d15fed4b5517e1da5e"
+                }
+            ]
+        },
+        {
+            "name": "libva",
+            "sources": [
+                {
+                    "type": "archive",
+                    "url": "https://github.com/intel/libva/releases/download/2.5.0/libva-2.5.0.tar.bz2",
+                    "sha256": "3aa89cd369a506ac4dbe5de7c0ef5da4f3d220bf986403f02fa1f6f702af6878"
+                }
+            ]
+        },
+        {
+            "name": "libva-utils",
+            "sources": [
+                {
+                    "type": "archive",
+                    "url": "https://github.com/intel/libva-utils/releases/download/2.5.0/libva-utils-2.5.0.tar.bz2",
+                    "sha256": "9238c9d5110d60f935683390b8383fdac3507346384cd5f117a23c6db1d72a17"
+                }
+            ],
+            "config-opts": [
+                "--disable-tests"
+            ]
+        },
+        {
+            "name": "intel-vaapi-driver",
+            "buildsystem": "meson",
+            "sources": [
+                {
+                    "type": "git",
+                    "url": "https://github.com/intel/intel-vaapi-driver.git",
+                    "branch": "9bc30a0231e55f17afed50589669d11e844d0bb9"
+                }
+            ]
+        },
+        {
+            "name": "python3-mako",
+            "buildsystem": "simple",
+            "build-commands": [
+                "pip3 install --no-index --find-links=\"file://${PWD}\" --prefix=${FLATPAK_DEST} mako"
+            ],
+            "sources": [
+                {
+                    "type": "file",
+                    "url": "https://files.pythonhosted.org/packages/b9/2e/64db92e53b86efccfaea71321f597fa2e1b2bd3853d8ce658568f7a13094/MarkupSafe-1.1.1.tar.gz",
+                    "sha256": "29872e92839765e546828bb7754a68c418d927cd064fd4708fab9fe9c8bb116b"
+                },
+                {
+                    "type": "file",
+                    "url": "https://files.pythonhosted.org/packages/b0/3c/8dcd6883d009f7cae0f3157fb53e9afb05a0d3d33b3db1268ec2e6f4a56b/Mako-1.1.0.tar.gz",
+                    "sha256": "a36919599a9b7dc5d86a7a8988f23a9a3a3d083070023bab23d64f7f1d1e0a4b"
+                }
+            ]
+        },
+        {
+            "name": "mesa",
+            "buildsystem": "meson",
+            "sources": [
+                {
+                    "type": "archive",
+                    "url": "https://mesa.freedesktop.org/archive/mesa-19.1.7.tar.xz",
+                    "sha256": "e287920fdb38712a9fed448dc90b3ca95048c7face5db52e58361f8b6e0f3cd5"
+                }
+            ],
+            "config-opts": [
+                "-Dshared-glapi=true",
+                "-Dgallium-opencl=disabled",
+                "-Dglx-read-only-text=true",
+                "-Dplatforms=x11,wayland,drm",
+                "-Dgbm=true",
+                "-Ddri-drivers=i965,i915",
+                "-Dopengl=true",
+                "-Dgles1=true",
+                "-Dgles2=true",
+                "-Degl=true",
+                "-Dgallium-drivers=radeonsi",
+                "-Dasm=false"
+            ]
+        },
+        {
             "name": "gstreamer",
             "buildsystem": "meson",
             "sources": [
@@ -213,6 +301,17 @@
             "config-opts": [
                 "-Dgtk_doc=disabled",
                 "-Dintrospection=disabled"
+            ]
+        },
+        {
+            "name": "gstreamer-vaapi",
+            "buildsystem": "meson",
+            "sources": [
+                {
+                    "type": "archive",
+                    "url": "https://gstreamer.freedesktop.org/src/gstreamer-vaapi/gstreamer-vaapi-1.16.1.tar.xz",
+                    "sha256": "cb570f6f1e78cb364fbe3c4fb8751824ee9db0c942ba61b62380b9b5abb7603a"
+                }
             ]
         },
         {
