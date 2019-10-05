@@ -45,6 +45,18 @@
                     "type": "archive",
                     "url": "https://gstreamer.freedesktop.org/src/gst-plugins-base/gst-plugins-base-1.16.1.tar.xz",
                     "sha256": "5c3cc489933d0597087c9bc6ba251c93693d64554bcc563539a084fa2d5fcb2b"
+                },
+                {
+                    "type": "patch",
+                    "path": "gstreamer-patches/gst-plugins-base-0001-playbin-Handle-error-message-with-redirection-indica.patch"
+                },
+                {
+                    "type": "patch",
+                    "path": "gstreamer-patches/gst-plugins-base-0001-glupload-Add-VideoMetas-and-GLSyncMeta-to-the-raw-up.patch"
+                },
+                {
+                    "type": "patch",
+                    "path": "gstreamer-patches/gst-plugins-base-0001-gl-New-pushsrc-based-glbasesrc-base-class.patch"
                 }
             ],
             "config-opts": [
@@ -61,6 +73,10 @@
                     "type": "archive",
                     "url": "https://gstreamer.freedesktop.org/src/gst-plugins-good/gst-plugins-good-1.16.1.tar.xz",
                     "sha256": "9fbabe69018fcec707df0b71150168776040cde6c1a26bb5a82a136755fa8f1f"
+                },
+                {
+                    "type": "patch",
+                    "path": "gstreamer-patches/gst-plugins-good-qtdemux-Specify-REDIRECT-information-in-error-messag.patch"
                 }
             ],
             "config-opts": [
@@ -162,6 +178,26 @@
                     "type": "archive",
                     "url": "https://gstreamer.freedesktop.org/src/gst-plugins-bad/gst-plugins-bad-1.16.1.tar.xz",
                     "sha256": "56481c95339b8985af13bac19b18bc8da7118c2a7d9440ed70e7dcd799c2adb5"
+                },
+                {
+                    "type": "patch",
+                    "path": "gstreamer-patches/gst-plugins-bad-0001-h264parse-Post-a-WARNING-when-data-is-broken.patch"
+                },
+                {
+                    "type": "patch",
+                    "path": "gstreamer-patches/gst-plugins-bad-0001-wpe-Fix-build-with-Werror-enabled.patch"
+                },
+                {
+                    "type": "patch",
+                    "path": "gstreamer-patches/gst-plugins-bad-0001-wpe-Port-for-WPEWebKit-2.25.x.patch"
+                },
+                {
+                    "type": "patch",
+                    "path": "gstreamer-patches/gst-plugins-bad-0001-wpe-Rewrite-wpesrc-as-a-glbasesrc-subclass.patch"
+                },
+                {
+                    "type": "patch",
+                    "path": "gstreamer-patches/gst-plugins-bad-0002-wpesrc-Implement-load-bytes-action-signal.patch"
                 }
             ],
             "config-opts": [

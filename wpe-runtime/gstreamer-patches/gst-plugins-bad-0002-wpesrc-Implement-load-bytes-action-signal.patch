@@ -1,0 +1,166 @@
+From 7bee061dcd8557dafcd276189f7c8ef10e2a4f82 Mon Sep 17 00:00:00 2001
+From: Philippe Normand <philn@igalia.com>
+Date: Tue, 24 Sep 2019 16:57:54 -0700
+Subject: [PATCH 2/2] wpesrc: Implement load-bytes action signal
+
+---
+ ext/wpe/WPEThreadedView.cpp | 43 +++++++++++++++++++++++++++++++------
+ ext/wpe/WPEThreadedView.h   |  1 +
+ ext/wpe/gstwpesrc.cpp       | 32 +++++++++++++++++++++++++++
+ 3 files changed, 70 insertions(+), 6 deletions(-)
+
+diff --git a/ext/wpe/WPEThreadedView.cpp b/ext/wpe/WPEThreadedView.cpp
+index 2406e4db9..a380ed39c 100644
+--- a/ext/wpe/WPEThreadedView.cpp
++++ b/ext/wpe/WPEThreadedView.cpp
+@@ -241,12 +241,9 @@ bool WPEThreadedView::initialize(GstWpeSrc* src, GstGLContext* context, GstGLDis
+             const gchar* location;
+             gboolean drawBackground = TRUE;
+             g_object_get(initializeContext.src, "location", &location, "draw-background", &drawBackground, nullptr);
+-            if (!location)
+-                g_warning("Invalid location");
+-            else {
+-                view.setDrawBackground(drawBackground);
++            view.setDrawBackground(drawBackground);
++            if (location)
+                 view.loadUriUnlocked(location);
+-            }
+             g_cond_signal(&view.threading.cond);
+             return G_SOURCE_REMOVE;
+         },
+@@ -261,7 +258,7 @@ bool WPEThreadedView::initialize(GstWpeSrc* src, GstGLContext* context, GstGLDis
+ 
+     g_source_unref(source);
+ 
+-    if (initializeContext.result) {
++    if (initializeContext.result && webkit.uri) {
+         GST_DEBUG("waiting load to finish");
+         GMutexHolder lock(threading.ready_mutex);
+         g_cond_wait(&threading.ready_cond, &threading.ready_mutex);
+@@ -399,6 +396,40 @@ void WPEThreadedView::loadUri(const gchar* uri)
+     g_source_unref(source);
+ }
+ 
++void WPEThreadedView::loadData(GBytes* bytes)
++{
++    struct DataContext {
++        WPEThreadedView& view;
++        GBytes* bytes;
++    } dataContext { *this, g_bytes_ref(bytes) };
++
++    GSource* source = g_idle_source_new();
++    g_source_set_callback(source,
++        [](gpointer data) -> gboolean {
++            GST_DEBUG("on view thread");
++            auto& dataContext = *static_cast<DataContext*>(data);
++            auto& view = dataContext.view;
++            GMutexHolder lock(view.threading.mutex);
++
++            webkit_web_view_load_bytes(view.webkit.view, dataContext.bytes, nullptr, nullptr, nullptr);
++            g_bytes_unref(dataContext.bytes);
++
++            g_cond_signal(&view.threading.cond);
++            return G_SOURCE_REMOVE;
++        },
++        &dataContext, nullptr);
++    g_source_set_priority(source, WPE_GLIB_SOURCE_PRIORITY);
++
++    {
++        GMutexHolder lock(threading.mutex);
++        g_source_attach(source, glib.context);
++        g_cond_wait(&threading.cond, &threading.mutex);
++        GST_DEBUG("done");
++    }
++
++    g_source_unref(source);
++}
++
+ void WPEThreadedView::setDrawBackground(gboolean drawsBackground)
+ {
+ #if WEBKIT_CHECK_VERSION(2, 24, 0)
+diff --git a/ext/wpe/WPEThreadedView.h b/ext/wpe/WPEThreadedView.h
+index 23f96609b..95aea9bfc 100644
+--- a/ext/wpe/WPEThreadedView.h
++++ b/ext/wpe/WPEThreadedView.h
+@@ -40,6 +40,7 @@ public:
+ 
+     void resize(int width, int height);
+     void loadUri(const gchar*);
++    void loadData(GBytes*);
+     void setDrawBackground(gboolean);
+ 
+     GstEGLImage* image();
+diff --git a/ext/wpe/gstwpesrc.cpp b/ext/wpe/gstwpesrc.cpp
+index 7b2c30ed9..98ade7fa3 100644
+--- a/ext/wpe/gstwpesrc.cpp
++++ b/ext/wpe/gstwpesrc.cpp
+@@ -86,6 +86,7 @@ enum
+ enum
+ {
+   SIGNAL_CONFIGURE_WEB_VIEW,
++  SIGNAL_LOAD_BYTES,
+   LAST_SIGNAL
+ };
+ static guint gst_wpe_src_signals[LAST_SIGNAL] = { 0 };
+@@ -99,6 +100,8 @@ struct _GstWpeSrc
+   /* properties */
+   gchar *location;
+   gboolean draw_background;
++
++  GBytes *bytes;
+ };
+ 
+ static void gst_wpe_src_uri_handler_init (gpointer iface, gpointer data);
+@@ -164,6 +167,13 @@ gst_wpe_src_gl_start (GstGLBaseSrc * base_src)
+   result = src->view->initialize (src, base_src->context, base_src->display,
+       GST_VIDEO_INFO_WIDTH (&base_src->out_info),
+       GST_VIDEO_INFO_HEIGHT (&base_src->out_info));
++
++  if (src->bytes != NULL) {
++    src->view->loadData (src->bytes);
++    g_bytes_unref (src->bytes);
++    src->bytes = NULL;
++  }
++
+   GST_OBJECT_UNLOCK (src);
+   if (!result) {
+     GST_ELEMENT_ERROR (src, RESOURCE, FAILED,
+@@ -229,6 +239,15 @@ gst_wpe_src_configure_web_view (GstWpeSrc * src, WebKitWebView * webview)
+   g_value_unset (&args[1]);
+ }
+ 
++static void
++gst_wpe_src_load_bytes (GstWpeSrc * src, GBytes * bytes)
++{
++  if (src->view && GST_STATE (GST_ELEMENT_CAST (src)) > GST_STATE_NULL)
++    src->view->loadData (bytes);
++  else
++    src->bytes = g_bytes_ref (bytes);
++}
++
+ static gboolean
+ gst_wpe_src_set_location (GstWpeSrc * src, const gchar * location,
+     GError ** error)
+@@ -485,6 +504,19 @@ gst_wpe_src_class_init (GstWpeSrcClass * klass)
+       g_signal_new ("configure-web-view", G_TYPE_FROM_CLASS (klass),
+       G_SIGNAL_RUN_LAST, 0, NULL, NULL, g_cclosure_marshal_generic,
+       G_TYPE_NONE, 1, G_TYPE_OBJECT);
++
++  /**
++   * GstWpeSrc::load-bytes:
++   * @src: the object which received the signal
++   * @bytes: the GBytes data to load
++   *
++   * Load the specified bytes into the internal webView.
++   */
++  gst_wpe_src_signals[SIGNAL_LOAD_BYTES] =
++      g_signal_new_class_handler ("load-bytes", G_TYPE_FROM_CLASS (klass),
++      static_cast < GSignalFlags > (G_SIGNAL_RUN_LAST | G_SIGNAL_ACTION),
++      G_CALLBACK (gst_wpe_src_load_bytes), NULL, NULL,
++      g_cclosure_marshal_generic, G_TYPE_NONE, 1, G_TYPE_BYTES);
+ }
+ 
+ static gboolean
+-- 
+2.23.0
+
